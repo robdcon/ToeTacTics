@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-
-// General template for each page 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import injectEventTapPlugin from 'react-tap-event-plugin'
+import RaisedButton from 'material-ui/RaisedButton' 
 
 class Template extends Component 
 {
@@ -8,16 +9,32 @@ class Template extends Component
 	{
 		return(
 
-			<div>
+			<MuiThemeProvider>
 
-				<header><h1>TicTacToe</h1></header>
-				<main>
-					{this.props.children}
-				</main>
+				<div>
+				
+					<header>
 
-			</div>
+					 <h1>TicTacToe</h1>
 
-			)
+					 <RaisedButton 
+
+						label={"Push Me"}
+						primary={true}
+						onClick={()=>console.log('working')}
+					 />
+
+					 </header>
+
+					<main>
+						{this.props.children}
+					</main>
+
+				</div>
+
+			</MuiThemeProvider>
+
+		)
 	}
 }
 
