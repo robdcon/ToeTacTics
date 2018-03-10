@@ -10,7 +10,6 @@ class Home extends Component
 
 			<div>
 
-				<h2>Home</h2>
 				<main>
 					{this.props.children}
 				</main>

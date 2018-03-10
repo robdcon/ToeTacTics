@@ -10,7 +10,6 @@ class Profile extends Component
 
 			<div>
 
-				<h2>Profile</h2>
 				<main>
 					{this.props.children}
 				</main>
