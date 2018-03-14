@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import injectEventTapPlugin from 'react-tap-event-plugin'
 import NavDrawer from '../components/NavDrawer' 
-import CardExpandable from 'material-ui/Card/CardExpandable'
+//import CardExpandable from 'material-ui/Card/CardExpandable'
 import {Header, Main} from '../styled/Template'
 
 class Template extends Component 
@@ -12,8 +11,6 @@ class Template extends Component
 		return(
 
 			<MuiThemeProvider>
-
-			<CardExpandable/>
 
 				<div>
 

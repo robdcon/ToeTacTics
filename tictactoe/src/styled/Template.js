@@ -11,7 +11,7 @@ export const Header = styled.header`
 
 export const Container = styled.div`
 
-	dusplay:flex;
+	display:flex;
 	flex-direction:column;
 	align-items:center;
 	margin: auto;
