@@ -50,6 +50,7 @@ export const Board = ({unit, size, rows}) =>
 export const Squares = (
 
 	{unit, coordinates, gameState, gameOver, yourTurn, ownMark, win, move}
+
 ) =>
 {
 
@@ -59,13 +60,13 @@ export const Squares = (
 		let makeMove = move
 		let mark = gameState[index]
 		let fill = 'black'
-		if(win && win.include('index'))
+		if(win && win.includes(index))
 		{
-			fill = 'lightgreen'
+			fill = 'blue'
 		}
 		if (gameOver || !yourTurn || mark) 
 		{
-			makeMove = () => console('nope!')
+			makeMove = () => console.log('nope!')
 		}
 
 		return (
@@ -83,6 +84,11 @@ export const Squares = (
 				align={'center'}
 
 				onClick={(event)=>
+				{
+					let index = event.target.index
+					makeMove(index, ownMark)
+				}}
+				onTap={(event)=>
 				{
 					let index = event.target.index
 					makeMove(index, ownMark)
