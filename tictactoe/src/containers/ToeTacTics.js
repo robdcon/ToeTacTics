@@ -34,7 +34,9 @@ class ToeTacTics extends Component
 		gameOver: false,
 		yourTurn: true,
 		winner: false,
-		coordinates:[]
+		coordinates:[],
+		potentialWin:false,
+		potentialWinningCombo:[]
 	}
 
 	componentDidMount()
@@ -89,9 +91,7 @@ class ToeTacTics extends Component
 			}
 
 			return{yourTurn, gameState, gameOver, win: foundWin || false, winner}
-		})
-
-		console.log(this.state.win)
+		})	
 		
 	}
 
@@ -117,22 +117,62 @@ class ToeTacTics extends Component
 		})
 	}
 
-	makeAIMove = (gameState) =>
+	canWinCheck = (gameState) =>
 	{
-		console.log(gameState)
-		let otherMark = this.state.otherMark
-		let openSquares = []
-		console.log(openSquares)
-		gameState.forEach((square, index)=>
+		let opponent = this.state.ownMark
+		let combos = this.combos
+		let winningMove = false
+
+		combos.forEach((combo)=>
 		{
-			if(!square)
+			
+			let [a,b,c] = combo
+
+			if((gameState[a] === opponent) && (gameState[b] === opponent)) 
 			{
-				openSquares.push(index)
+				if(gameState[c] === false)
+				{
+					winningMove = c
+				}
+				
+				
+			
 			}
+
 		})
-		let aiMove = openSquares[this.random(0, openSquares.length)]
-	
+		return winningMove
+		
+	}
+
+	makeAIMove = (gameState) =>
+	{		
+
+		let otherMark = this.state.otherMark				
+		let combos = this.combos
+		let canWinCheck = this.canWinCheck(gameState)
+		let aiMove
+		let openSquares = []
+		
+		if(canWinCheck === false)
+		{
+			gameState.forEach((square, index)=>
+			{
+				if(!square)
+				{
+					openSquares.push(index)
+				}
+			})
+			aiMove = openSquares[this.random(0, openSquares.length)]
+
+		}
+		else 
+		{
+			aiMove = canWinCheck
+
+		}
 		setTimeout(()=>this.move(aiMove, otherMark), 1000)
+				
+		
 	}
 
 	turingTest = () =>
