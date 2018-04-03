@@ -133,11 +133,26 @@ class ToeTacTics extends Component
 				if(gameState[c] === false)
 				{
 					winningMove = c
-				}
-				
-				
+				}	
 			
 			}
+			else if((gameState[a] === opponent) && (gameState[c] === opponent)) 
+			{
+				if(gameState[b] === false)
+				{
+					winningMove = b
+				}	
+			
+			}
+			else if((gameState[b] === opponent) && (gameState[c] === opponent)) 
+			{
+				if(gameState[a] === false)
+				{
+					winningMove = a
+				}	
+			
+			}
+
 
 		})
 		return winningMove
@@ -148,7 +163,6 @@ class ToeTacTics extends Component
 	{		
 
 		let otherMark = this.state.otherMark				
-		let combos = this.combos
 		let canWinCheck = this.canWinCheck(gameState)
 		let aiMove
 		let openSquares = []

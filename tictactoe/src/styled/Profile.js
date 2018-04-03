@@ -1,4 +1,4 @@
-import media from '../utils/media'
+import {media} from '../utils/media'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -9,7 +9,7 @@ export const Container = styled.div`
 	min-height: 100vh;
 	flex-direction: column;
 	align-items: center;
-	${media.handheld`width:100%`}
+	${media.handheld`width:100%;`}
 
 `
 
@@ -18,7 +18,7 @@ export const Name = styled.h2`
 	display:flex;
 `
 
-export gameListHeader = styled.h4`
+export const GameListHeader = styled.h4`
 
 	display:flex
 	padding-bottom: 2px;
@@ -38,17 +38,18 @@ export const GameList = styled.div`
 
 `
 
-export const GameRecord = styled.div`
+// export const GameRecord = styled.div`
 
-	display:flex;
-	flex-direction:row;
-	justify-content:flex-start;
-	width:100%;
-	padding: 5px 0;
-	margin: 1px 0;
-	box-sizing:border-box;
-	background-color: ${props.index % 2 == 1} ? 'rgb(225,225,225)' : 'rgb(240.240.240)'
-`
+// 	display:flex;
+// 	flex-direction:row;
+// 	justify-content:flex-start;
+// 	width:100%;
+// 	padding: 5px 0;
+// 	margin: 1px 0;
+// 	box-sizing:border-box;
+// 	background-color: ${this.props.index % 2 === 1} ? 'rgb(225,225,225)' : 'rgb(240.240.240)';
+	
+// `
 
 export const ColumnLabels = styled.div`
 
@@ -66,6 +67,6 @@ export const ColumnLabels = styled.div`
 export const Column = styled.span`
 
 	display:flex;
-	width25%;
+	width:25%;
 
 `
