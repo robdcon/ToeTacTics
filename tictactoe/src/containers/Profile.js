@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Container, Name, GameListHeader, GameList, Column, ColumnLabels} from '../styled/Profile'
+import {Container, Name, GameListHeader, GameList, GameRecord, Column, ColumnLabels} from '../styled/Profile'
 
 // General template for each page 
 
@@ -32,39 +32,39 @@ class Profile extends Component
 		}
 	}
 
-	// get records()
-	// {
-	// 	return this.props.user.games.map((game, index)=>
-	// 	{
-	// 		return(
+	get records()
+	{
+		return this.props.user.games.map((game, index)=>
+		{
+			return(
 
-	// 			<GameRecord
+				<GameRecord
 
-	// 				key={index}
-	// 				index={index}
-	// 			>
+					key={index}
+					index={index}
+				>
 
-	// 				<Column>
-	// 					{(game.winner) ? 'Won!' : 'Lost!'}
-	// 				</Column>  
+					<Column>
+						{(game.winner) ? 'Won!' : 'Lost!'}
+					</Column>  
 
-	// 				<Column>
-	// 					"ROBOT"
-	// 				</Column>
+					<Column>
+						"ROBOT"
+					</Column>
 
-	// 				<Column>
-	// 					"NO"
-	// 				</Column>
+					<Column>
+						"NO"
+					</Column>
 
-	// 				<Column>
-	// 					{game.createdAt}
-	// 				</Column>
+					<Column>
+						{game.createdAt}
+					</Column>
 
-	// 			</GameRecord>
+				</GameRecord>
 
-	// 		)
-	// 	})
-	// }
+			)
+		})
+	}
 
 	render()
 	{
@@ -94,6 +94,8 @@ class Profile extends Component
 						<Column>Date</Column>
 
 					</ColumnLabels>
+
+					{this.records}
 
 				</GameList>
 

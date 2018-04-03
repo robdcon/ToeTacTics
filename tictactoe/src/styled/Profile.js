@@ -38,18 +38,18 @@ export const GameList = styled.div`
 
 `
 
-// export const GameRecord = styled.div`
+export const GameRecord = styled.div`
 
-// 	display:flex;
-// 	flex-direction:row;
-// 	justify-content:flex-start;
-// 	width:100%;
-// 	padding: 5px 0;
-// 	margin: 1px 0;
-// 	box-sizing:border-box;
-// 	background-color: ${this.props.index % 2 === 1} ? 'rgb(225,225,225)' : 'rgb(240.240.240)';
-	
-// `
+	display:flex;
+	flex-direction:row;
+	justify-content:flex-start;
+	width:100%;
+	padding: 5px 0;
+	margin: 1px 0;
+	box-sizing:border-box;
+	background-color: ${props=>(props.index % 2 === 1) ? 'rgb(225,225,225)' : 'rgb(240.240.240)'};
+
+`
 
 export const ColumnLabels = styled.div`
 
