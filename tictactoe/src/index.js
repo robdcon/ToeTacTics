@@ -3,18 +3,30 @@ import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
 import {Router, browserHistory, applyRouterMiddleware} from 'react-router'
 import Routes from './routes/'
-import Relay from 'react-relay'
+import Relay from 'react-relay/classic'
 import useRelay from 'react-router-relay'
 import {RelayNetworkLayer, urlMiddleware} from 'react-relay-network-layer'
 import relayApi from './config/endpoints'
 import auth from './utils/auth'
+import Environment from './routes/Environment'
+
+////////////////////////
+// ENVIRONMENT SET UP //
+////////////////////////
+
+
 
 const createHeaders = () =>
 {
 	let idToken = auth.getToken()
+	console.log(`AUTH0-TOKEN:${idToken}`)
 	if(idToken)
 	{
-		return {Authorization:`Bearer ${idToken}`}
+
+		return {
+			Authorization:`Bearer ${idToken}`
+
+		}
 	}
 	else
 	{
@@ -23,7 +35,7 @@ const createHeaders = () =>
 }
 
 Relay.injectNetworkLayer
-{
+(
 	new RelayNetworkLayer(
 		[
 			urlMiddleware(
@@ -41,12 +53,13 @@ Relay.injectNetworkLayer
 			},
 
 		], {diableBatchQuery:true})
-}
+)
 
 
 ReactDOM.render(
 
 	<Router
+
 	environment = {Relay.Store}
 	render = {applyRouterMiddleware(useRelay)}
 	history = {browserHistory}
@@ -54,5 +67,7 @@ ReactDOM.render(
 
 	 />,
 
-	  document.getElementById('root'));
+	  document.getElementById('root')
+)
+
 registerServiceWorker();

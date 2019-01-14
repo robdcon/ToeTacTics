@@ -1,6 +1,7 @@
 import Auth0Lock from 'auth0-lock'
-const authDomain = 'robdcon.eu.auth0.com'
-const clientId = '3J1wIWWO42FOPt2vf3KqNqmgtsfgwPvB'
+const authDomain = 'robdcondev.eu.auth0.com'
+const clientId = 'kIAU0WffWzyRtdbCx6w3MXEnUG8q8ffQ'
+//const clientSecret = 'Kx3-U74pFL4h_QUYT-nsFfau6MdAdah_ZpkC8F2QPIjgThY201r6RiNymfsbOvk0'
 
 class AuthService
 {
@@ -13,8 +14,8 @@ class AuthService
 				params: 
 				{
 					scope: 'openid email'
-				}
-			}
+				},
+			},
 		})
 
 		this.showLock =  this.showLock.bind(this)
@@ -25,7 +26,7 @@ class AuthService
 
 	authProcess = (authResult) =>
 	{
-		console.log(authResult)
+		console.log("Auth Result:", authResult)
 	}
 
 	showLock()
@@ -53,10 +54,13 @@ class AuthService
 		if(!expString)
 		{
 			this.logOut()
-			localStorage.removeItem('tokenId')
+			localStorage.removeItem('idToken')
 			return false
 		}
-		if (now > parseInt(expString, 10)) //10 is Radix parameter for parseInt
+
+		let exp = new Date(parseInt(expString, 10)) //10 is Radix parameter for parseInt
+
+		if (now > exp) 
 		{
 			this.logout()
 			return false
