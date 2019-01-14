@@ -1,7 +1,10 @@
 import Auth0Lock from 'auth0-lock'
-const authDomain = 'robdcondev.eu.auth0.com'
-const clientId = 'kIAU0WffWzyRtdbCx6w3MXEnUG8q8ffQ'
-//const clientSecret = 'Kx3-U74pFL4h_QUYT-nsFfau6MdAdah_ZpkC8F2QPIjgThY201r6RiNymfsbOvk0'
+import authProps from './authCred'
+//import clientId from './authCred'
+
+const authDomain = authProps.authDomain
+const clientId = authProps.clientId
+
 
 class AuthService
 {
