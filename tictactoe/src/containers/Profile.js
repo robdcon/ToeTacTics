@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {Container, Name, GameListHeader, GameList, GameRecord, Column, ColumnLabels} from '../styled/Profile'
+import Relay from 'react-relay/classic'
+
+
 
 // General template for each page 
 
@@ -34,7 +37,7 @@ class Profile extends Component
 
 	get records()
 	{
-		return this.props.user.games.map((game, index)=>
+		return this.props.user.games.map((game, index) =>
 		{
 			return(
 
@@ -105,4 +108,21 @@ class Profile extends Component
 	}
 }
 
-export default Profile
+export default Relay.createContainer(
+	Profile, 
+	{
+		fragments:
+		{
+			viewer: () => `
+
+			fragment on Viewer
+			{
+				user
+				{
+					id
+				}
+			}
+			`
+		}
+	}
+	)

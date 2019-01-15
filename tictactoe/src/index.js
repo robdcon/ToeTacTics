@@ -8,11 +8,6 @@ import useRelay from 'react-router-relay'
 import {RelayNetworkLayer, urlMiddleware} from 'react-relay-network-layer'
 import relayApi from './config/endpoints'
 import auth from './utils/auth'
-import Environment from './routes/Environment'
-
-////////////////////////
-// ENVIRONMENT SET UP //
-////////////////////////
 
 
 
@@ -37,22 +32,22 @@ const createHeaders = () =>
 Relay.injectNetworkLayer
 (
 	new RelayNetworkLayer(
-		[
-			urlMiddleware(
+	[
+		urlMiddleware(
+		{
+			url:(req)=>relayApi,
+		}),
+		next => req =>
+		{
+			req.headers = 
 			{
-				url:(req)=>relayApi,
-			}),
-			next => req =>
-			{
-				req.headers = 
-				{
-					...req.headers,
-					...createHeaders()
-				}
-				return next(req)
-			},
+				...req.headers,
+				...createHeaders()
+			}
+			return next(req)
+		},
 
-		], {diableBatchQuery:true})
+	], {diableBatchQuery:true})
 )
 
 

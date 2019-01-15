@@ -3,6 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import NavDrawer from '../components/NavDrawer' 
 //import CardExpandable from 'material-ui/Card/CardExpandable'
 import {Header, Main} from '../styled/Template'
+import Relay from 'react-relay/classic'
 
 class Template extends Component 
 {
@@ -34,4 +35,21 @@ class Template extends Component
 	}
 }
 
-export default Template
+export default Relay.createContainer(
+	Template, 
+	{
+		fragments:
+		{
+			viewer: () => `
+
+			fragment on Viewer
+			{
+				user
+				{
+					id
+				}
+			}
+			`
+		}
+	}
+	)

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Stage} from 'react-konva'
 import {Board, Squares} from '../styled/ToeTacTics'
+import Relay from 'react-relay/classic'
 
 // General template for each page 
 
@@ -66,7 +67,7 @@ class ToeTacTics extends Component
 	move = (index, marker) =>
 	{
 
-		this.setState((prevState,prop)=>
+		this.setState((prevState,prop) =>
 		{
 			let { gameState, yourTurn, gameOver, winner } = prevState
 			yourTurn = !yourTurn
@@ -107,7 +108,7 @@ class ToeTacTics extends Component
 
 		let combos = this.combos
 
-		return combos.find((combo)=>
+		return combos.find((combo) =>
 		{
 
 			let [a,b,c] = combo
@@ -123,7 +124,7 @@ class ToeTacTics extends Component
 		let combos = this.combos
 		let winningMove = false
 
-		combos.forEach((combo)=>
+		combos.forEach((combo) =>
 		{
 			
 			let [a,b,c] = combo
@@ -169,7 +170,7 @@ class ToeTacTics extends Component
 		
 		if(canWinCheck === false)
 		{
-			gameState.forEach((square, index)=>
+			gameState.forEach((square, index) =>
 			{
 				if(!square)
 				{
@@ -184,7 +185,7 @@ class ToeTacTics extends Component
 			aiMove = canWinCheck
 
 		}
-		setTimeout(()=>this.move(aiMove, otherMark), 1000)
+		setTimeout(() => this.move(aiMove, otherMark), 1000)
 				
 		
 	}
@@ -250,4 +251,21 @@ class ToeTacTics extends Component
 	}
 }
 
-export default ToeTacTics
+export default Relay.createContainer(
+	ToeTacTics, 
+	{
+		fragments:
+		{
+			viewer: () => `
+
+			fragment on Viewer
+			{
+				user
+				{
+					id
+				}
+			}
+			`
+		}
+	}
+	)
